@@ -1,5 +1,5 @@
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.bayunvnt'
 
 ext["signing.keyId"] = ''
 ext["signing.password"] = ''
@@ -17,14 +17,13 @@ if (secretPropsFile.exists()) {
     }
 }
 
-def siteUrl = 'https://github.com/ChaosLeung/PinView'
+def siteUrl = 'https://github.com/bayunvnt/PinView'
 def issueUrl = 'https://github.com/ChaosLeung/PinView/issues'
-def gitUrl = 'git@github.com:ChaosLeung/PinView.git'
+def gitUrl = 'git@github.com:bayunvnt/PinView.git'
 
-group = "io.github.chaosleung"
 version = "1.4.4"
 
-def publication = publishing.publications.create("maven", MavenPublication)
+//def publication = publishing.publications.create("maven", MavenPublication)
 
 // Copy from ButterKnife
 android.libraryVariants.all { variant ->
@@ -78,62 +77,62 @@ android.libraryVariants.all { variant ->
     if (variant.name == 'release') {
         // There's a lot of "magic" around the archives configuration; easier
         // just to embrace it rather than try to configure around it
-        publication.artifact(javadocJarTask)
-        publication.artifact(sourcesJarTask)
+//        publication.artifact(javadocJarTask)
+//        publication.artifact(sourcesJarTask)
     }
 }
 
-afterEvaluate {
-    publication.with {
-        from components.release
+//afterEvaluate {
+//    publication.with {
+//        from components.release
+//
+//        artifactId "pinview"
+//
+//        pom {
+//            name = 'PinView'
+//            description = 'Provides a widget for enter PIN/OTP/password etc.'
+//            url = siteUrl
+//
+//            packaging = 'aar'
+//
+//            licenses {
+//                license {
+//                    name = 'The Apache Software License, Version 2.0'
+//                    url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                }
+//            }
+//            scm {
+//                connection = gitUrl
+//                developerConnection = gitUrl
+//                url = siteUrl
+//            }
+//            developers {
+//                developer {
+//                    id = 'bayunvnt'
+//                    name = 'Bayu Novianto'
+//                    email = 'bayunoviantoo9@gmail.com'
+//                }
+//            }
+//        }
+//    }
+//    publishing {
+//        repositories {
+//            maven {
+//                name = "sonatype"
+//
+//                def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+//                def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+//                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+//
+//                credentials {
+//                    username ossrhUsername
+//                    password ossrhPassword
+//                }
+//            }
+//        }
+//    }
+//}
 
-        artifactId "pinview"
-
-        pom {
-            name = 'PinView'
-            description = 'Provides a widget for enter PIN/OTP/password etc.'
-            url = siteUrl
-
-            packaging = 'aar'
-
-            licenses {
-                license {
-                    name = 'The Apache Software License, Version 2.0'
-                    url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                }
-            }
-            scm {
-                connection = gitUrl
-                developerConnection = gitUrl
-                url = siteUrl
-            }
-            developers {
-                developer {
-                    id = 'ChaosLeung'
-                    name = 'Chaos Leung'
-                    email = 'lgf42031@gmail.com'
-                }
-            }
-        }
-    }
-    publishing {
-        repositories {
-            maven {
-                name = "sonatype"
-
-                def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
-                credentials {
-                    username ossrhUsername
-                    password ossrhPassword
-                }
-            }
-        }
-    }
-}
-
-signing {
-    sign publishing.publications
-}
+//signing {
+//    sign publishing.publications
+//}
