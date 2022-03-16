@@ -1,1 +1,2 @@
 include ':sample', ':pinview'
+include ':pinviewlib'
